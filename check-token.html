@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>檢查 Token 存儲</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .token-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-left: 3px solid #4CAF50;
+            word-break: break-all;
+        }
+        .token-item.empty {
+            border-left-color: #f44336;
+            color: #666;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .refresh-btn {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Token 存儲檢查工具</h1>
+    
+    <button class="refresh-btn" onclick="checkTokens()">刷新檢查</button>
+    
+    <div class="section">
+        <h2>Local Storage</h2>
+        <div id="localStorage-tokens"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Session Storage</h2>
+        <div id="sessionStorage-tokens"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Pinia Store (pinia-user)</h2>
+        <div id="pinia-tokens"></div>
+    </div>
+    
+    <div class="section">
+        <h2>所有相關 Token 值</h2>
+        <div id="all-tokens"></div>
+    </div>
+
+    <script>
+        function checkTokens() {
+            // 檢查 Local Storage
+            const localStorageDiv = document.getElementById('localStorage-tokens');
+            localStorageDiv.innerHTML = '';
+            
+            const localKeys = ['token', 'adminToken', 'adminUserName', 'adminRole', 'adminFirstName', 'adminLastName'];
+            localKeys.forEach(key => {
+                const value = localStorage.getItem(key);
+                const div = document.createElement('div');
+                div.className = 'token-item' + (value ? '' : ' empty');
+                div.innerHTML = `<strong>${key}:</strong> ${value || '(空)'}`;
+                localStorageDiv.appendChild(div);
+            });
+            
+            // 檢查 Session Storage
+            const sessionStorageDiv = document.getElementById('sessionStorage-tokens');
+            sessionStorageDiv.innerHTML = '';
+            
+            const sessionKeys = ['token', 'adminToken', 'pinia-user'];
+            sessionKeys.forEach(key => {
+                const value = sessionStorage.getItem(key);
+                const div = document.createElement('div');
+                div.className = 'token-item' + (value ? '' : ' empty');
+                let displayValue = value;
+                if (key === 'pinia-user' && value) {
+                    try {
+                        const parsed = JSON.parse(value);
+                        displayValue = JSON.stringify(parsed, null, 2);
+                    } catch (e) {
+                        displayValue = value;
+                    }
+                }
+                div.innerHTML = `<strong>${key}:</strong> <pre style="margin: 5px 0; white-space: pre-wrap;">${displayValue || '(空)'}</pre>`;
+                sessionStorageDiv.appendChild(div);
+            });
+            
+            // 檢查 Pinia Store
+            const piniaDiv = document.getElementById('pinia-tokens');
+            piniaDiv.innerHTML = '';
+            
+            try {
+                const piniaData = sessionStorage.getItem('pinia-user');
+                if (piniaData) {
+                    const parsed = JSON.parse(piniaData);
+                    const div = document.createElement('div');
+                    div.className = 'token-item';
+                    div.innerHTML = `<pre style="margin: 5px 0; white-space: pre-wrap;">${JSON.stringify(parsed, null, 2)}</pre>`;
+                    piniaDiv.appendChild(div);
+                    
+                    // 提取 token
+                    if (parsed.token || (parsed.state && parsed.state.token)) {
+                        const tokenDiv = document.createElement('div');
+                        tokenDiv.className = 'token-item';
+                        const tokenValue = parsed.token || parsed.state.token;
+                        tokenDiv.innerHTML = `<strong>從 Pinia 提取的 token:</strong> ${tokenValue}`;
+                        piniaDiv.appendChild(tokenDiv);
+                    }
+                } else {
+                    const div = document.createElement('div');
+                    div.className = 'token-item empty';
+                    div.innerHTML = '(未找到 pinia-user 數據)';
+                    piniaDiv.appendChild(div);
+                }
+            } catch (e) {
+                const div = document.createElement('div');
+                div.className = 'token-item empty';
+                div.innerHTML = `錯誤: ${e.message}`;
+                piniaDiv.appendChild(div);
+            }
+            
+            // 總結所有 token
+            const allTokensDiv = document.getElementById('all-tokens');
+            allTokensDiv.innerHTML = '';
+            
+            const tokens = {
+                'localStorage.token': localStorage.getItem('token'),
+                'localStorage.adminToken': localStorage.getItem('adminToken'),
+                'sessionStorage.token': sessionStorage.getItem('token'),
+                'sessionStorage.adminToken': sessionStorage.getItem('adminToken'),
+            };
+            
+            // 從 pinia 提取
+            try {
+                const piniaData = sessionStorage.getItem('pinia-user');
+                if (piniaData) {
+                    const parsed = JSON.parse(piniaData);
+                    tokens['pinia-user.token'] = parsed.token || (parsed.state && parsed.state.token) || null;
+                }
+            } catch (e) {
+                tokens['pinia-user.token'] = null;
+            }
+            
+            Object.keys(tokens).forEach(key => {
+                const div = document.createElement('div');
+                div.className = 'token-item' + (tokens[key] ? '' : ' empty');
+                div.innerHTML = `<strong>${key}:</strong> ${tokens[key] || '(空)'}`;
+                allTokensDiv.appendChild(div);
+            });
+        }
+        
+        // 頁面載入時自動檢查
+        checkTokens();
+        
+        // 監聽 storage 變化
+        window.addEventListener('storage', checkTokens);
+    </script>
+</body>
+</html>
+

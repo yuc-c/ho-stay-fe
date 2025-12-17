@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@theme {
+    /* 背景色 - 溫暖的米白色 */
+    --color-background: hsl(40 20% 97%);
+    --color-foreground: hsl(120 40% 15%);
+
+    /* 卡片 */
+    --color-card: hsl(0 0% 100%);
+    --color-card-foreground: hsl(120 40% 15%);
+
+    /* 彈出層 */
+    --color-popover: hsl(0 0% 100%);
+    --color-popover-foreground: hsl(120 40% 15%);
+
+    /* 主色 - 舒適的森林綠 */
+    --color-primary: hsl(120 45% 35%);
+    --color-primary-foreground: hsl(0 0% 100%);
+    --color-primary-light: hsl(120 35% 55%);
+    --color-primary-dark: hsl(120 50% 25%);
+
+    /* 次要色 - 薄荷綠 */
+    --color-secondary: hsl(150 30% 85%);
+    --color-secondary-foreground: hsl(120 40% 20%);
+
+    /* 柔和色 */
+    --color-muted: hsl(120 15% 92%);
+    --color-muted-foreground: hsl(120 10% 45%);
+
+    /* 強調色 - 自然綠 */
+    --color-accent: hsl(140 40% 75%);
+    --color-accent-foreground: hsl(120 40% 20%);
+
+    /* 警告色 */
+    --color-destructive: hsl(0 70% 50%);
+    --color-destructive-foreground: hsl(0 0% 100%);
+
+    /* 成功色 */
+    --color-success: hsl(142 70% 45%);
+    --color-success-foreground: hsl(0 0% 100%);
+
+    /* 邊框和輸入框 */
+    --color-border: hsl(120 15% 88%);
+    --color-input: hsl(120 15% 88%);
+    --color-ring: hsl(120 45% 35%);
+
+    --radius: 0.75rem;
+
+    /* 漸層 */
+    --gradient-green: linear-gradient(135deg, hsl(120 45% 35%), hsl(140 45% 45%));
+    --gradient-soft: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 20% 95%));
+
+    /* 陰影 */
+    --shadow-soft: 0 2px 10px rgba(45, 80, 22, 0.08);
+    --shadow-medium: 0 4px 20px rgba(45, 80, 22, 0.12);
+
+    /* 側邊欄 */
+    --color-sidebar-background: hsl(120 40% 15%);
+    --color-sidebar-foreground: hsl(0 0% 95%);
+    --color-sidebar-primary: hsl(120 45% 35%);
+    --color-sidebar-primary-foreground: hsl(0 0% 100%);
+    --color-sidebar-accent: hsl(120 35% 20%);
+    --color-sidebar-accent-foreground: hsl(0 0% 95%);
+    --color-sidebar-border: hsl(120 30% 25%);
+    --color-sidebar-ring: hsl(120 45% 35%);
+}
+
+/* 深色模式 - 使用 .dark class */
+.dark {
+    --color-background: hsl(120 30% 8%);
+    --color-foreground: hsl(120 10% 90%);
+
+    --color-card: hsl(120 25% 12%);
+    --color-card-foreground: hsl(120 10% 90%);
+
+    --color-popover: hsl(120 25% 12%);
+    --color-popover-foreground: hsl(120 10% 90%);
+
+    --color-primary: hsl(120 45% 45%);
+    --color-primary-foreground: hsl(120 30% 8%);
+    --color-primary-light: hsl(120 40% 55%);
+    --color-primary-dark: hsl(120 50% 35%);
+
+    --color-secondary: hsl(120 20% 20%);
+    --color-secondary-foreground: hsl(120 10% 90%);
+
+    --color-muted: hsl(120 20% 18%);
+    --color-muted-foreground: hsl(120 10% 60%);
+
+    --color-accent: hsl(140 35% 25%);
+    --color-accent-foreground: hsl(120 10% 90%);
+
+    --color-destructive: hsl(0 60% 45%);
+    --color-destructive-foreground: hsl(120 10% 90%);
+
+    --color-success: hsl(142 60% 40%);
+    --color-success-foreground: hsl(120 10% 90%);
+
+    --color-border: hsl(120 20% 22%);
+    --color-input: hsl(120 20% 22%);
+    --color-ring: hsl(120 45% 45%);
+
+    --gradient-green: linear-gradient(135deg, hsl(120 45% 35%), hsl(140 45% 45%));
+    --gradient-soft: linear-gradient(180deg, hsl(120 30% 8%), hsl(120 25% 12%));
+
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+    --color-sidebar-background: hsl(120 35% 10%);
+    --color-sidebar-foreground: hsl(120 10% 90%);
+    --color-sidebar-primary: hsl(120 45% 45%);
+    --color-sidebar-primary-foreground: hsl(120 30% 8%);
+    --color-sidebar-accent: hsl(120 25% 15%);
+    --color-sidebar-accent-foreground: hsl(120 10% 90%);
+    --color-sidebar-border: hsl(120 20% 18%);
+    --color-sidebar-ring: hsl(120 45% 45%);
+}
+
+/* 樣式僅作用在飯店管理相關的檔案上 */
+.hotel-management * {
+    border-color: var(--color-border);
+}
+
+.hotel-management {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}

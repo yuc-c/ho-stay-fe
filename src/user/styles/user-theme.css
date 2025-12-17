@@ -1,0 +1,173 @@
+/* ====================================================== */
+/* HOHOSTAY USER THEME  — 全域樣式                        */
+/* ====================================================== */
+
+:root {
+    --bg-cream: #f5f5f5;
+    --primary-green: #89A48C;
+    --primary-green-dark: #6F8A72;
+
+    --accent-red: #D45C4A;
+    --accent-red-dark: #B9493A;
+
+    --text-dark: #2B2B2B;
+    --text-muted: #6B7280;
+
+    --border-color: #E5E7EB;
+    --card-bg: #FFFFFF;
+}
+
+/* 全域 reset */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 全域常用工具 */
+.text-primary {
+    color: var(--primary-green);
+}
+
+.text-accent {
+    color: var(--accent-red);
+}
+
+/* 輸入框 */
+
+::placeholder {
+    color: #b6b7ba !important;
+    opacity: 1;
+}
+
+select.form-select:has(option[value=""]:checked) {
+    color: #96999e !important;
+    /* 淺灰 (placeholder 顏色) */
+}
+
+/* 使用者有選擇後，字體變深灰 */
+select.form-select:not(:has(option[value=""]:checked)) {
+    color: #2B2B2B !important;
+    /* 深灰 */
+}
+
+/* 預設日期文字（年/月/日）顯示為淡灰 */
+input[type="date"] {
+    color: #96999e !important;
+}
+
+/* 已選擇日期後變成深灰 */
+input[type="date"]:not([value=""]) {
+    color: #2B2B2B !important;
+}
+
+/* 針對 Chrome / Safari（Webkit）真正修改日期文字 */
+input[type="date"]::-webkit-datetime-edit {
+    color: #96999e !important;
+}
+
+input[type="date"]:not([value=""])::-webkit-datetime-edit {
+    color: #2B2B2B !important;
+}
+
+/* 日期中的「年」「月」「日」每個分段都需要設定 */
+input[type="date"]::-webkit-datetime-edit-year-field,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field {
+    color: #96999e !important;
+}
+
+input[type="date"]:not([value=""])::-webkit-datetime-edit-year-field,
+input[type="date"]:not([value=""])::-webkit-datetime-edit-month-field,
+input[type="date"]:not([value=""])::-webkit-datetime-edit-day-field {
+    color: #2B2B2B !important;
+}
+
+/* 預設選單顏色變淡灰 (模擬 placeholder) */
+.form-select:has(option[value=""]:checked),
+.form-select:has(option:not([value]):checked) {
+    color: #96999e !important;
+}
+
+/* 有選擇選項後變深灰 */
+.form-select:not(:has(option[value=""]:checked)):not(:has(option:not([value]):checked)) {
+    color: #2B2B2B !important;
+}
+
+/* ====================== */
+/* 10. Toast              */
+/* ====================== */
+
+
+
+.toast-success {
+    background: var(--primary-green, #89A48C) !important;
+    /* 改用全域綠色 */
+    color: white;
+    padding: 12px 18px;
+    border-radius: 0 !important;
+    /* 與全域一致，無圓角 */
+    font-size: 0.95rem;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 讓 input[type="file"] 顯示的文字顏色一致 */
+input[type="file"] {
+    color: #b6b7ba !important;
+}
+
+/* Pagenation */
+/* Pagination—黑字 + 白底 */
+.page-item .page-link {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Hover 時：文字不變，背景微灰 */
+.page-item .page-link:hover {
+    background-color: #f2f2f2 !important;
+    color: #000000 !important;
+}
+
+/* Active 頁碼：黑底白字（或你要黑字白底？選一種）*/
+.page-item.active .page-link {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+}
+
+/*照片縮圖*/
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
