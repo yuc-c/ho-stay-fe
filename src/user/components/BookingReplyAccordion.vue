@@ -52,7 +52,7 @@ const emits = defineEmits(['open-modal']);
 console.log("review" + JSON.stringify(props.reviews));
 
 
-const API_BASE_URL = 'http://192.168.25.152:8080';
+const API_BASE_URL = 'http://localhost:8080';
 
 
 // function getImageUrl(imagePath) {

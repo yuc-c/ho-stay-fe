@@ -227,7 +227,7 @@ const handleImageUpload = () => {
             let imageUrl = res.data.url; // "/uploads/faq/xxx.png"
 
             // 使用環境變數組合完整 URL
-            const fileBaseUrl = import.meta.env.VITE_FILE_BASE_URL || 'http://192.168.25.152:8080';
+            const fileBaseUrl = import.meta.env.VITE_FILE_BASE_URL || 'http://localhost:8080';
             const fullImageUrl = fileBaseUrl + imageUrl;
 
             console.log('完整圖片 URL:', fullImageUrl);

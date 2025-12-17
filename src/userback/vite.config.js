@@ -21,7 +21,7 @@ export default defineConfig({
         // API 代理設定（重要！）
         proxy: {
             '/api': {
-                target: 'http://192.168.25.152:8080',  // 後端 API 位址
+                target: 'http://localhost:8080',  // 後端 API 位址
                 changeOrigin: true,
                 secure: false
             }

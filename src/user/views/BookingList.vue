@@ -709,7 +709,7 @@ import { getBookings, getBookingById, cancelBooking, getCancelReasons, initiateP
 import { createReview } from '@/user/api/review.js'
 
 // 後端 base URL（與 order.js 保持一致）
-const API_BASE_URL = 'http://192.168.25.152:8080'
+const API_BASE_URL = 'http://localhost:8080'
 
 export default {
   name: 'BookingList',
@@ -915,7 +915,7 @@ export default {
           
           // 如果是 401，提示使用者登入
           if (error.response.status === 401) {
-            alert('請先登入\n\n測試模式請在瀏覽器 Console 執行:\nfetch("http://192.168.25.152:8080/api/users/test/login?userId=1", {credentials: "include"})')
+            alert('請先登入\n\n測試模式請在瀏覽器 Console 執行:\nfetch("http://localhost:8080/api/users/test/login?userId=1", {credentials: "include"})')
           } else {
             alert('載入訂單失敗: ' + (error.response.data?.message || error.response.data || '未知錯誤'))
           }

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // 建立 axios 實例
 const request = axios.create({
-    baseURL: 'http://192.168.25.152:8080', // 你的後端 API 網址
+    baseURL: 'http://localhost:8080', // 你的後端 API 網址
     timeout: 10000 // 請求逾時時間
 })
 

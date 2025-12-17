@@ -9,7 +9,7 @@
         <!-- 測試 1: 後端連線 -->
         <div class="test-item">
           <div class="d-flex justify-content-between align-items-center">
-            <span>1. 後端服務連線 (http://192.168.25.152:8080)</span>
+            <span>1. 後端服務連線 (http://localhost:8080)</span>
             <span v-if="tests.backend === null" class="badge bg-secondary">未測試</span>
             <span v-else-if="tests.backend" class="badge bg-success">✓ 成功</span>
             <span v-else class="badge bg-danger">✗ 失敗</span>
@@ -107,7 +107,7 @@ export default {
       const suggestions = []
       
       if (this.tests.backend === false) {
-        suggestions.push('❌ 後端服務未啟動 - 請確認 Spring Boot 應用正在運行於 http://192.168.25.152:8080')
+        suggestions.push('❌ 後端服務未啟動 - 請確認 Spring Boot 應用正在運行於 http://localhost:8080')
         suggestions.push('檢查指令：在後端專案執行 mvn spring-boot:run 或使用 IDE 啟動')
       }
       
@@ -165,7 +165,7 @@ export default {
     
     async testBackend() {
       try {
-        const response = await axios.get('http://192.168.25.152:8080/api/test/cors', {
+        const response = await axios.get('http://localhost:8080/api/test/cors', {
           timeout: 5000
         })
         this.tests.backend = response.status === 200
@@ -183,7 +183,7 @@ export default {
     
     async testCors() {
       try {
-        const response = await axios.get('http://192.168.25.152:8080/api/test/cors')
+        const response = await axios.get('http://localhost:8080/api/test/cors')
         this.tests.cors = response.data.success === true
       } catch (error) {
         this.tests.cors = false
@@ -193,7 +193,7 @@ export default {
     
     async testBookingsAPI() {
       try {
-        const response = await axios.get('http://192.168.25.152:8080/api/test/bookings')
+        const response = await axios.get('http://localhost:8080/api/test/bookings')
         this.tests.bookings = response.status === 200 && response.data.content
         this.bookingsData = response.data
       } catch (error) {

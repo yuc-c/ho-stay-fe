@@ -108,16 +108,16 @@ export default defineConfig({
     proxy: {
       "/api": {
 
-        target: "http://192.168.25.152:8080", // ⭐ 改成你的後端 IP
+        target: "http://localhost:8080", // 本機後端
 
         changeOrigin: true,
         secure: false,
       },
       "/images": {
-        target: "http://192.168.25.152:8080",// ⭐ 改這裡
+        target: "http://localhost:8080",// 本機後端
         changeOrigin: true,
       }
     },
-    allowedHosts: ["resorptive-cristy-unaged.ngrok-free.dev", "pushy-frances-abrogable.ngrok-free.dev", "192.168.25.152"]
+    allowedHosts: ["resorptive-cristy-unaged.ngrok-free.dev", "pushy-frances-abrogable.ngrok-free.dev", "localhost"]
   },
 })

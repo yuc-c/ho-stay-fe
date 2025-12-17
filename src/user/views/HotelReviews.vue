@@ -185,7 +185,7 @@ export default {
       this.loading = true;
       try {
         const response = await axios.get(
-          `http://192.168.25.152:8080/api/reviews/hotel/${this.hotelId}`
+          `http://localhost:8080/api/reviews/hotel/${this.hotelId}`
         );
         if (response.data.success) {
           this.reviews = response.data.data;

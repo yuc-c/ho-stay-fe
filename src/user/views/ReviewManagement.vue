@@ -180,7 +180,7 @@ export default {
     async loadReviews() {
       try {
         const response = await axios.get(
-          `http://192.168.25.152:8080/api/reviews/user/${this.userId}`
+          `http://localhost:8080/api/reviews/user/${this.userId}`
         );
         if (response.data.success) {
           this.reviews = response.data.data;
@@ -211,7 +211,7 @@ export default {
 
       try {
         const response = await axios.put(
-          `http://192.168.25.152:8080/api/reviews/${this.editForm.reviewId}?userId=${this.userId}`,
+          `http://localhost:8080/api/reviews/${this.editForm.reviewId}?userId=${this.userId}`,
           {
             rating: this.editForm.rating,
             comment: this.editForm.comment,
@@ -258,7 +258,7 @@ export default {
     async deleteReview(reviewId) {
       try {
         const response = await axios.delete(
-          `http://192.168.25.152:8080/api/reviews/${reviewId}?userId=${this.userId}`
+          `http://localhost:8080/api/reviews/${reviewId}?userId=${this.userId}`
         );
 
         if (response.data.success) {

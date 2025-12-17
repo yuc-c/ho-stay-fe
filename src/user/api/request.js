@@ -2,14 +2,14 @@
 // 開發模式使用相對路徑（會經過 Vite proxy），生產模式使用完整 URL
 let API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
 
-    (import.meta.env.DEV ? '/api' : 'http://192.168.25.152:8080/api')
+    (import.meta.env.DEV ? '/api' : 'http://localhost:8080/api')
 
 
 
 
 // 確保 API_BASE_URL 以 /api 結尾（如果使用完整 URL）
 if (API_BASE_URL.startsWith('http') && !API_BASE_URL.endsWith('/api')) {
-    // 如果環境變數設置錯誤（例如設置為 http://192.168.25.152:8080），自動添加 /api
+    // 如果環境變數設置錯誤（例如設置為 http://localhost:8080），自動添加 /api
     API_BASE_URL = API_BASE_URL.endsWith('/') ? API_BASE_URL + 'api' : API_BASE_URL + '/api'
 }
 

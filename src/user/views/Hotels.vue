@@ -2502,7 +2502,7 @@ const getImageUrl = (url) => {
   }
   
   // 轉換為完整 URL
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://192.168.25.152:8080/api'
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api'
   const baseUrl = API_BASE_URL.replace('/api', '')
   const fullUrl = `${baseUrl}${normalizedUrl}`
   

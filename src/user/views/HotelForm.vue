@@ -1002,7 +1002,7 @@ const handleGeocoding = async () => {
       error: error,
       message: errorMessage,
       formData: formData.value,
-      API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://192.168.25.152:8080/api'
+      API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api'
     })
     
     toast.error(displayMessage, {

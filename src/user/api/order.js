@@ -4,7 +4,7 @@ import useUserStore from '@/user/stores/user.js'
 
 // 建立 axios 實例 - 使用空的 baseURL，讓 Vite proxy 處理
 const request = axios.create({
-    baseURL: 'http://192.168.25.152:8080',
+    baseURL: 'http://localhost:8080',
     timeout: 10000,
     withCredentials: true
 })

@@ -177,7 +177,7 @@ export default {
       try {
         // 1. 檢查是否已評論
         const reviewResponse = await axios.get(
-          `http://192.168.25.152:8080/api/reviews/booking/${this.bookingId}`
+          `http://localhost:8080/api/reviews/booking/${this.bookingId}`
         );
 
         if (reviewResponse.data.success && reviewResponse.data.data) {
@@ -187,7 +187,7 @@ export default {
 
         // 2. 檢查是否符合評論條件
         const canReviewResponse = await axios.get(
-          `http://192.168.25.152:8080/api/reviews/can-review/${this.bookingId}?userId=${this.userId}`
+          `http://localhost:8080/api/reviews/can-review/${this.bookingId}?userId=${this.userId}`
         );
 
         if (canReviewResponse.data.success) {
@@ -224,7 +224,7 @@ export default {
 
       try {
         const response = await axios.post(
-          `http://192.168.25.152:8080/api/reviews?userId=${this.userId}`,
+          `http://localhost:8080/api/reviews?userId=${this.userId}`,
           {
             bookingId: this.bookingId,
             rating: this.reviewForm.rating,

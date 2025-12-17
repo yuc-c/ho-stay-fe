@@ -5,7 +5,7 @@ import router from "@/user/routers/userRouter.js"
 
 
 const myAxios = axios.create({
-    // baseURL: 'http://192.168.25.152:8080'
+    // baseURL: 'http://localhost:8080'
 })
 //發api時自動帶入token
 myAxios.interceptors.request.use(

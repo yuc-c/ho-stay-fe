@@ -8,7 +8,7 @@
 ```javascript
 import { API_BASE_URL, APP_ENV, IS_DEV } from '@/utils/config'
 
-console.log(API_BASE_URL) // http://192.168.25.152:8000/api
+console.log(API_BASE_URL) // http://localhost:8000/api
 console.log(APP_ENV)      // development
 console.log(IS_DEV)       // true
 ```
@@ -160,7 +160,7 @@ const response = await axiosInstance({
 在 `.env.development` 文件中配置：
 
 ```env
-VITE_API_BASE_URL=http://192.168.25.152:8000/api
+VITE_API_BASE_URL=http://localhost:8000/api
 VITE_APP_ENV=development
 VITE_APP_TITLE=後台管理系統
 ```
@@ -171,5 +171,5 @@ VITE_APP_TITLE=後台管理系統
 
 例如：
 - 前端請求：`/api/users`
-- 實際請求：`http://192.168.25.152:8000/api/users`
+- 實際請求：`http://localhost:8000/api/users`
 

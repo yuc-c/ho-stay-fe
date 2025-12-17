@@ -84,7 +84,7 @@ function login() {
         });
 }
 function redirectGoogle() {
-    window.location.href = "http://192.168.25.152:8080/google/login";
+    window.location.href = "http://localhost:8080/google/login";
 }
 //----------------------------------------
 //google登入後取得使用者資料（僅在 URL 參數包含 token 時執行，例如 Google 登入回調）

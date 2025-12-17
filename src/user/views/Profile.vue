@@ -190,7 +190,7 @@ import { API_BASE_URL } from '@/user/api/request.js'
 import useUserStore from '@/user/stores/user.js'
 
 // 後端 base URL（用於圖片訪問）
-const BACKEND_BASE_URL = API_BASE_URL.replace('/api', '') || 'http://192.168.25.152:8080'
+const BACKEND_BASE_URL = API_BASE_URL.replace('/api', '') || 'http://localhost:8080'
 
 export default {
   name: 'UserProfile',
